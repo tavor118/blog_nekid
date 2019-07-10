@@ -10,7 +10,7 @@ from .models import Blog, Post
 
 class BlogListView(generic.ListView):
     """View to display blogs."""
-    queryset = Blog.objects.all()
+    queryset = Blog.objects.all().order_by("-created")
     template_name = 'blogs/index.html'
 
 
