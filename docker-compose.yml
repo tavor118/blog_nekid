@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: docker/python/Dockerfile
+    container_name: dj01
+    volumes:
+      - ./blog_ne_kid:/src
+    command: >
+      bash -c "python manage.py migrate
+      && python manage.py bot
+      && python manage.py runserver 0.0.0.0:8990"
+    ports:
+        - "8990:8990"
