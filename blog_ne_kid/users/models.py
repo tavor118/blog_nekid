@@ -10,6 +10,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+from users.services import send_notification_email
+
 
 class UserManager(BaseUserManager):
     """Define a model manager for User model."""
@@ -76,6 +78,12 @@ class UserProfile(models.Model):
     )
     title = models.CharField(max_length=50, blank=True, default="")
     about = models.TextField(blank=True, default="")
+
+    def send_notification_about_new_post(self):
+        """
+        Get notification about new post.
+        """
+        return send_notification_email(self.user)
 
     @property
     def get_followers(self):

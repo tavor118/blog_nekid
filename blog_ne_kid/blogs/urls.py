@@ -9,12 +9,22 @@ app_name = 'blogs'
 urlpatterns = [
     path('', views.BlogListView.as_view(), name='index'),
     path(
-        '<blog_pk>/subscribe',
+        'my_posts/',
+        views.MyPostListView.as_view(),
+        name='my_posts'
+    ),
+    path(
+        'new_post/',
+        views.new_post,
+        name='new_post'
+    ),
+    path(
+        '<blog_pk>/subscribe/',
         views.subscribe_on_blog,
         name='subscribe'
     ),
     path(
-        '<blog_pk>/unsubscribe',
+        '<blog_pk>/unsubscribe/',
         views.unsubscribe,
         name='unsubscribe'
     ),
