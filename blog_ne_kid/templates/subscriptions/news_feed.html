@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <header class="masthead">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class=" col-md-8 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h3 class=" site-heading my-4 mt-3 text-white"> Welcome to my awesome Blog </h3>
+            <p class="text-light">We Love Django As much as you do..! &nbsp
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+
+  <div class="container">
+    <h1>My Feeds</h1>
+
+    <div class="row">
+      <!-- Subscribed Blog Entries Column -->
+      <div class="col-md-8 mt-3 left">
+        {% for post in post_list %}
+          <div class="card mb-4">
+            <div class="card-body">
+              <h2 class="card-title">{{ post.name }}</h2>
+              <p class="card-text text-muted h6">{{ post.blog }} | {{ post.created }} </p>
+              <p class="card-text">{{ post.body|truncatewords:20 }}</p>
+              <a href="{% url 'blogs:post_detail' post.blog.pk post.pk %}"
+                 class="btn btn-primary">Read More &rarr;
+              </a>
+              {% if post not in read_post_list %}
+                <a href="{% url 'subscriptions:mark_as_read' post.pk %}"
+                   class="btn btn-primary">Mark as Read
+                </a>
+              {% else %}
+                <button type="button" class="btn btn-primary" disabled>
+                  Marked as Read
+                </button>
+              {% endif %}
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+
+      {% include 'includes/sidebar.html' %}
+    </div>
+  </div>
+
+{% endblock %}

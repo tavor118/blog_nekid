@@ -1,0 +1,32 @@
+{% block sidebar %}
+
+  <!-- Sidebar Widgets Column -->
+  {% if user.is_authenticated %}
+    <div class="col-md-4 float-right ">
+      <div class="card my-4">
+        <h5 class="card-header">Menu</h5>
+        <div class="card-body">
+          <p class="card-text">Please choose something from below:</p>
+          <a href="{% url 'subscriptions:news_feed' %}"
+             class="btn btn-outline-primary">News feed
+          </a>
+          <a href="{% url 'subscriptions:index' %}"
+             class="btn btn-outline-primary">Subscribed blog
+          </a>
+        </div>
+      </div>
+    </div>
+  {% else %}
+    <div class="col-md-4 float-right ">
+      <div class="card my-4">
+        <h5 class="card-header">About Us</h5>
+        <div class="card-body">
+          <p class="card-text"> This awesome blog is made on the top of our Favourite full stack Framework 'Django',
+            follow up the tutorial to learn how we made it..!</p>
+          <a href="#"
+             class="btn btn-danger">Know more!</a>
+        </div>
+      </div>
+    </div>
+  {% endif %}
+{% endblock sidebar %}
