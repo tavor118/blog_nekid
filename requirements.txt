@@ -1,5 +1,5 @@
 astroid==2.2.5
-Django==2.1
+Django==2.2.13
 django-extensions==2.1.9
 django-widget-tweaks==1.4.5
 factory-boy==2.12.0
